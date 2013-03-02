@@ -1,0 +1,8 @@
+
+# Be sure to change the Exec line to the location
+# of your vinelooper file!
+
+[Desktop Entry]
+Name=VineBox
+Exec=vinelooper
+Type=application
