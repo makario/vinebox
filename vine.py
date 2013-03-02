@@ -8,9 +8,9 @@ import time
 from filelock import FileLock
 
 # max number of files to download
-MAX_CACHE = 100 
+MAX_CACHE = 100
 
-VIDEO_DIR = os.getenv('HOME') + os.sep + ".vine"
+VIDEO_DIR = os.getenv("HOME") + os.sep + ".vine"
 LOG_LAST_UPDATE = VIDEO_DIR + os.sep + "last_updated.txt"
 
 FETCH_DELAY_SEC = 10
@@ -96,6 +96,10 @@ if os.path.exists(LOG_LAST_UPDATE):
 if not os.path.exists(VIDEO_DIR):
 	os.makedirs(VIDEO_DIR)
 
+# in case we have a bad lock
+for file in os.listdir(VIDEO_DIR):
+   if file.endswith(".lock"):
+	os.remove(VIDEO_DIR + os.sep + file)
 
 while num < MAX_CACHE: # this should loop forever since num always > MAX_CACHE
    since, num = getResults(since=since, num=num)
